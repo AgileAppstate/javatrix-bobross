@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-
+import java.util.*;
 import org.junit.Test;
 
 public class MatrixTest {
@@ -126,6 +126,119 @@ public class MatrixTest {
 		}
 		// Show results
 		System.err.println("\nTest: \"java print matrix 2\" ");
+		if (testFailed != null) {
+			System.err.println("Result: ERROR");
+			System.err.println("Feedback: " + testFailed);
+		}
+		else
+			System.err.println("Result: PASSED\n");
+		assertEquals(testFailed, null);
+	}
+
+	@Test
+	public void testConstantMatrix1() {
+		// Prep for test
+		// Actual and expected outputs
+		int testInput1 = 5;
+		int testInput2 = 5;
+		double testInput3 = 25.;
+
+		double[][] correctResult = {{25.,25.,25.,25.,25.}, {25.,25.,25.,25.,25.}, {25.,25.,25.,25.,25.},
+				{25.,25.,25.,25.,25.}, {25.,25.,25.,25.,25.}};
+		double[][] testOutput = null;
+		String testFailed = null;
+
+		// Save current System.out and set to new stream we can read.
+		PrintStream origOut = System.out;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream newOut = new PrintStream(baos);
+		System.setOut(newOut);
+
+		// Conduct test of print method
+		try {
+			//String[] args = new String[0];
+			Matrix test = new Matrix(testInput1, testInput2, testInput3);
+			testOutput = test.matrix;
+		}
+		catch (Exception e) {
+			testFailed = "Exception thrown unexpectedly";
+		}
+
+		// Cleanup
+		// Get all the stuff the method wrote to System.out, and reset it.
+		System.out.flush();
+		System.setOut(origOut);
+
+		// Check results
+		if (testOutput == null)
+			testFailed = "matrix not initialized";
+
+		else if (!Arrays.deepEquals(correctResult, testOutput)) {
+			if (testFailed ==  null)
+				testFailed = "Incorrect output generated.";
+			else
+				testFailed += "; incorrect output generated.";
+			testFailed += "\nExpected output: \"" + Arrays.deepToString(correctResult);
+			testFailed += "\nGenerated output: \"" + Arrays.deepToString(testOutput) + "\n";
+		}
+		// Show results
+		System.err.println("\nTest: \"java generate constant matrix\" ");
+		if (testFailed != null) {
+			System.err.println("Result: ERROR");
+			System.err.println("Feedback: " + testFailed);
+		}
+		else
+			System.err.println("Result: PASSED\n");
+		assertEquals(testFailed, null);
+	}
+
+	@Test
+	public void testConstantMatrix2() {
+		// Prep for test
+		// Actual and expected outputs
+		int testInput1 =3;
+		int testInput2 = 2;
+		double testInput3 = 6.3;
+
+		double[][] correctResult = {{6.3,6.3}, {6.3,6.3}, {6.3,6.3}};
+		double[][] testOutput = null;
+		String testFailed = null;
+
+		// Save current System.out and set to new stream we can read.
+		PrintStream origOut = System.out;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream newOut = new PrintStream(baos);
+		System.setOut(newOut);
+
+		// Conduct test of print method
+		try {
+			//String[] args = new String[0];
+			Matrix test = new Matrix(testInput1, testInput2, testInput3);
+			testOutput = test.matrix;
+		}
+		catch (Exception e) {
+			testFailed = "Exception thrown unexpectedly";
+		}
+
+		// Cleanup
+		// Get all the stuff the method wrote to System.out, and reset it.
+		System.out.flush();
+		System.setOut(origOut);
+
+		// Check results
+		if (testOutput == null)
+			testFailed = "matrix not initialized";
+
+		else if (!Arrays.deepEquals(correctResult, testOutput)) {
+			if (testFailed ==  null)
+				testFailed = "Incorrect output generated.";
+			else
+				testFailed += "; incorrect output generated.";
+			testFailed += "\nExpected output: \"" + Arrays.deepToString(correctResult);
+			testFailed += "\nGenerated output: \"" + Arrays.deepToString(testOutput) + "\n";
+		}
+		// Show results
+		System.err.println("\nTest: \"java generate constant matrix\" ");
 		if (testFailed != null) {
 			System.err.println("Result: ERROR");
 			System.err.println("Feedback: " + testFailed);
