@@ -21,18 +21,18 @@ default:
 
 
 
-compile: src/Hello.java src/HelloTest.java $(JUNIT_JAR)
-	cd src; javac -cp .:../$(JUNIT_JAR) HelloTest.java
-	cd src; javac Hello.java
+compile: src/Matrix.java src/MatrixTest.java $(JUNIT_JAR)
+	cd src; javac -cp .:../$(JUNIT_JAR) MatrixTest.java
+	cd src; javac Matrix.java
 
 clean:
 	rm -f *~
 	rm -f src/*~
 	rm -f src/*.class
 
-test: src/Hello.class src/HelloTest.class $(JUNIT_JAR)
+test: src/Matrix.class src/MatrixTest.class $(JUNIT_JAR)
 	cd src; java -cp .:../$(JUNIT_JAR) $(JUNIT_RUNNER) --scan-class-path
 
-run: src/Hello.class
-	echo "Running Hello: should output: 'Hello, World!'"
-	cd src; java -cp . Hello
+run: src/Matrix.class
+	echo "Running Matrix: shouldn't crash"
+	cd src; java -cp . Matrix
