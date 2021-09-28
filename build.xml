@@ -1,4 +1,4 @@
-<project name="Hello" default="test" basedir=".">
+<project name="Matrix" default="test" basedir=".">
   <description>
     simple example build file for hello+travis project
   </description>
@@ -21,7 +21,7 @@
 
   <target name="run" depends="compile"
         description="run the main">
-    <java fork="true" dir="./src" classname="Hello">
+    <java fork="true" dir="./src" classname="Matrix">
       <classpath>
         <path location="./src"/>
       </classpath>
@@ -30,7 +30,7 @@
 
   <target name="run2" depends="compile"
         description="run the main with arg">
-    <java fork="true" dir="./src" classname="Hello">
+    <java fork="true" dir="./src" classname="Matrix">
       <arg value="Bob"/>
       <classpath>
         <path location="./src"/>
