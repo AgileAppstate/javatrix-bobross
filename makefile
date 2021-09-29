@@ -10,6 +10,8 @@
 
 JUNIT_JAR = junit-platform-console-standalone-1.2.0.jar
 JUNIT_RUNNER = org.junit.platform.console.ConsoleLauncher
+CKSTYLE_COMMAND =  -jar /usr/local/checkstyle-5.5/checkstyle-5.5-all.jar
+CKSTYLE_XML = cs_appstate_checks.xml
 
 default: 
 	@echo "usage: make target"
@@ -36,3 +38,5 @@ test: src/Matrix.class src/MatrixTest.class $(JUNIT_JAR)
 run: src/Matrix.class
 	echo "Running Matrix: shouldn't crash"
 	cd src; java -cp . Matrix
+defchk: src/*.java $(CKSTYLE_XML)
+	java $(CKSTYLE_COMMAND) -c $(CKSTYLE_XML) src/*.java
