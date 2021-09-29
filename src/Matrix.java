@@ -57,6 +57,10 @@ public class Matrix {
         return new Matrix(output);
     }
 
+    public double[][] getArray(){
+        return matrix;
+    }
+
     public void print(int a, int b){
         String format = "%" + a + "." + b + "f ";
         for(int i=0; i < matrix.length;i++){

@@ -158,7 +158,7 @@ public class MatrixTest {
 		try {
 			//String[] args = new String[0];
 			Matrix test = new Matrix(testInput1, testInput2, testInput3);
-			testOutput = test.matrix;
+			testOutput = test.getArray();
 		}
 		catch (Exception e) {
 			testFailed = "Exception thrown unexpectedly";
@@ -214,7 +214,7 @@ public class MatrixTest {
 		try {
 			//String[] args = new String[0];
 			Matrix test = new Matrix(testInput1, testInput2, testInput3);
-			testOutput = test.matrix;
+			testOutput = test.getArray();
 		}
 		catch (Exception e) {
 			testFailed = "Exception thrown unexpectedly";

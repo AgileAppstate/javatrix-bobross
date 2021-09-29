@@ -1,6 +1,4 @@
-import Matrix;
-
-public class Testtrix {
+public class exampletest {
     public static void main(String[] args) {
         double[][] vals = {{1.,2.,3},{4.,5.,6.},{7.,8.,9.}};
 
