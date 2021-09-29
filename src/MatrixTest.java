@@ -366,14 +366,74 @@ public class MatrixTest {
 			System.err.println("Result: PASSED\n");
 		assertNull(testFailed);
 	}
+  
 	@Test
+	public void testGetArrayCopy() {
+		// Prep for test
+		// Actual and expected outputs
+		int testInput1 = 5;
+		int testInput2 = 5;
+		double testInput3 = 25.;
+
+		double[][] correctResult = null;
+		double[][] testOutput = null;
+		double[][] testOutput2 = null;
+		String testFailed = null;
+
+		// Save current System.out and set to new stream we can read.
+		PrintStream origOut = System.out;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream newOut = new PrintStream(baos);
+		System.setOut(newOut);
+
+		// Conduct test of print method
+		try {
+			//String[] args = new String[0];
+			Matrix test = new Matrix(testInput1, testInput2, testInput3);
+			correctResult = test.getArray();
+			testOutput = test.getArrayCopy();
+			correctResult[0][0] = Double.POSITIVE_INFINITY;
+			testOutput2 = test.getArrayCopy();
+		}
+		catch (Exception e) {
+			testFailed = "Exception thrown unexpectedly";
+		}
+
+		// Cleanup
+		// Get all the stuff the method wrote to System.out, and reset it.
+		System.out.flush();
+		System.setOut(origOut);
+
+		// Check results
+		if (testOutput == null)
+			testFailed = "matrix not initialized";
+
+		else if (Arrays.deepEquals(correctResult, testOutput)) {
+			if (testFailed ==  null)
+				testFailed = "testOutput changed when it shouldn't have!.";
+
+			testFailed += "\nExpected output: \"" + Arrays.deepToString(correctResult);
+			testFailed += "\nGenerated output: \"" + Arrays.deepToString(testOutput) + "\n";
+		}
+		// Show results
+		System.err.println("\nTest: \"java generate constant matrix\" ");
+		if (testFailed != null) {
+			System.err.println("Result: ERROR");
+			System.err.println("Feedback: " + testFailed);
+		}
+		else
+			System.err.println("Result: PASSED\n");
+		assertNull(testFailed);
+	}
+  
+  	@Test
 	public void testConstructorZeroes(){
 		int testInput1 = 4;
 		int testInput2 = 4;
 		double correctResults [][] = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}}; 
 		Matrix matrix = new Matrix(testInput1, testInput2);
 		assertEquals(correctResults, matrix.getArray());
-	}
+  }
 
 }
 
