@@ -366,7 +366,13 @@ public class MatrixTest {
 			System.err.println("Result: PASSED\n");
 		assertNull(testFailed);
 	}
-
+	@Test
+	public void testConstructorZeroes(){
+		int testInput1 = 4;
+		int testInput2 = 4;
+		double correctResults [][] = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}}; 
+		Matrix matrix = new Matrix(testInput1, testInput2);
+		assertEquals(correctResults, matrix.getArray());
 
 
 }
