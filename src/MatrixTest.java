@@ -17,7 +17,7 @@ public class MatrixTest {
 		int testInput2 = 3;
 		int testInput3 = 1;
 		String correctResult = "1.0 2.0 3.0 4.0 \n5.0 6.0 7.0 8.0 \n";
-		String testOutput = null;
+		String testOutput;
 		String testFailed = null;
 
 		// Save current System.out and set to new stream we can read.
@@ -69,7 +69,7 @@ public class MatrixTest {
 		}
 		else
 			System.err.println("Result: PASSED\n");
-		assertEquals(testFailed, null);
+		assertNull(testFailed, null);
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class MatrixTest {
 		int testInput2 = 3;
 		int testInput3 = 1;
 		String correctResult = "1.0 2.0 3.0 4.0 \n5.0 6.0 7.0 8.0 \n1.0 2.0 3.0 4.0 \n5.0 6.0 7.0 8.0 \n";
-		String testOutput = null;
+		String testOutput;
 		String testFailed = null;
 
 		// Save current System.out and set to new stream we can read.
@@ -132,7 +132,7 @@ public class MatrixTest {
 		}
 		else
 			System.err.println("Result: PASSED\n");
-		assertEquals(testFailed, null);
+		assertNull(testFailed, null);
 	}
 
 	@Test
@@ -189,7 +189,7 @@ public class MatrixTest {
 		}
 		else
 			System.err.println("Result: PASSED\n");
-		assertEquals(testFailed, null);
+		assertNull(testFailed);
 	}
 
 	@Test
@@ -245,7 +245,126 @@ public class MatrixTest {
 		}
 		else
 			System.err.println("Result: PASSED\n");
-		assertEquals(testFailed, null);
+		assertNull(testFailed);
+	}
+
+	@Test
+	public void testTimes1() {
+		// Prep for test
+		// Actual and expected outputs
+		int testInput1 =3;
+		int testInput2 = 3;
+		double testInput3 = 2.;
+
+
+		double[][] correctResult = {{12.,12., 12.}, {12.,12., 12.}, {12.,12., 12.}};
+		Matrix testOutput = null;
+		String testFailed = null;
+
+		// Save current System.out and set to new stream we can read.
+		PrintStream origOut = System.out;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream newOut = new PrintStream(baos);
+		System.setOut(newOut);
+
+		// Conduct test of print method
+		try {
+			//String[] args = new String[0];
+			Matrix test = new Matrix(testInput1, testInput2, testInput3);
+			testOutput = test.times(new Matrix(testInput1, testInput2, testInput3));
+		}
+		catch (Exception e) {
+			testFailed = "Exception thrown unexpectedly";
+		}
+
+		// Cleanup
+		// Get all the stuff the method wrote to System.out, and reset it.
+		System.out.flush();
+		System.setOut(origOut);
+
+		// Check results
+		if (testOutput == null)
+			testFailed = "matrix not initialized";
+
+		else if (!Arrays.deepEquals(correctResult, testOutput.matrix)) {
+			if (testFailed ==  null)
+				testFailed = "Incorrect output generated.";
+			else
+				testFailed += "; incorrect output generated.";
+			testFailed += "\nExpected output: \"" + Arrays.deepToString(correctResult);
+			testFailed += "\nGenerated output: \"" + Arrays.deepToString(testOutput.matrix) + "\n";
+		}
+		// Show results
+		System.err.println("\nTest: \"java generate constant matrix\" ");
+		if (testFailed != null) {
+			System.err.println("Result: ERROR");
+			System.err.println("Feedback: " + testFailed);
+		}
+		else
+			System.err.println("Result: PASSED\n");
+		assertNull(testFailed);
+	}
+
+
+	@Test
+	public void testTimes2() {
+		// Prep for test
+		// Actual and expected outputs
+		int testInput1 =3;
+		int testInput2 = 5;
+		double testInput3 = 2.;
+
+		int testInput4 =5;
+		int testInput5 = 4;
+		double testInput6 = 0.1;
+
+
+		double[][] correctResult = {{1., 1., 1., 1.}, {1., 1., 1., 1.}, {1., 1., 1., 1.}};
+		Matrix testOutput = null;
+		String testFailed = null;
+
+		// Save current System.out and set to new stream we can read.
+		PrintStream origOut = System.out;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		PrintStream newOut = new PrintStream(baos);
+		System.setOut(newOut);
+
+		// Conduct test of print method
+		try {
+			//String[] args = new String[0];
+			Matrix test = new Matrix(testInput1, testInput2, testInput3);
+			testOutput = test.times(new Matrix(testInput4, testInput5, testInput6));
+		}
+		catch (Exception e) {
+			testFailed = "Exception thrown unexpectedly";
+		}
+
+		// Cleanup
+		// Get all the stuff the method wrote to System.out, and reset it.
+		System.out.flush();
+		System.setOut(origOut);
+
+		// Check results
+		if (testOutput == null)
+			testFailed = "matrix not initialized";
+
+		else if (!Arrays.deepEquals(correctResult, testOutput.matrix)) {
+			if (testFailed ==  null)
+				testFailed = "Incorrect output generated.";
+			else
+				testFailed += "; incorrect output generated.";
+			testFailed += "\nExpected output: \"" + Arrays.deepToString(correctResult);
+			testFailed += "\nGenerated output: \"" + Arrays.deepToString(testOutput.matrix) + "\n";
+		}
+		// Show results
+		System.err.println("\nTest: \"java generate constant matrix\" ");
+		if (testFailed != null) {
+			System.err.println("Result: ERROR");
+			System.err.println("Feedback: " + testFailed);
+		}
+		else
+			System.err.println("Result: PASSED\n");
+		assertNull(testFailed);
 	}
 
 

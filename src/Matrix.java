@@ -21,6 +21,28 @@ public class Matrix {
 
     }
 
+    public Matrix times(Matrix B){
+        if (B == null)
+            throw new java.lang.IllegalArgumentException("Cannot accept null argument.");
+
+        if (matrix[0].length != B.matrix.length)
+            throw new java.lang.IllegalArgumentException("Matrix inner dimensions must agree.");
+
+        double [][] output = new double[matrix.length][B.matrix[0].length];
+        for (int i=0; i < output.length; i++){
+            System.out.print(i);
+            for (int j=0; j < output[0].length; j++){
+                System.out.print(j);
+                for (int k=0; k < matrix[0].length; k++){
+                    System.out.print(k);
+                    output[i][j] += matrix[i][k] * B.matrix[k][j];
+                }
+            }
+        }
+
+        return new Matrix(output);
+    }
+
     public void print(int a, int b){
         String format = "%" + a + "." + b + "f ";
         for(int i=0; i < matrix.length;i++){
