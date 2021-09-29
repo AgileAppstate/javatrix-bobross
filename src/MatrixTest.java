@@ -373,7 +373,7 @@ public class MatrixTest {
 		double correctResults [][] = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}}; 
 		Matrix matrix = new Matrix(testInput1, testInput2);
 		assertEquals(correctResults, matrix.getArray());
-
+	}
 
 }
 
