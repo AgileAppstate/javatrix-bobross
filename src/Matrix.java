@@ -20,6 +20,20 @@ public class Matrix {
         }
 
     }
+   
+    public Matrix(int m, int n){
+	/**
+	m - Number of rows
+	n - number of coulmns
+	**/
+	matrix = new double [m][n]
+	for (int i = 0; i<m; i++){
+		for (int j = 0; j<n; j++){
+		matrix[i][j] = 0;
+		}
+	}
+  }    
+ 
 
     public Matrix times(Matrix B){
         if (B == null)
