@@ -47,6 +47,14 @@ public class Matrix {
         return matrix;
     }
 
+    public double[][] getArrayCopy(){
+        double[][] output = new double[matrix.length][];
+        for (int i=0; i < matrix.length; i++){
+            output[i] = matrix[i].clone();
+        }
+        return output;
+    }
+
     public void print(int a, int b){
         String format = "%" + a + "." + b + "f ";
         for(int i=0; i < matrix.length;i++){
