@@ -433,7 +433,14 @@ public class MatrixTest {
 		double correctResults [][] = {{0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0}}; 
 		Matrix matrix = new Matrix(testInput1, testInput2);
 		assertEquals(correctResults, matrix.getArray());
-  }
+  }	
+	@Test 
+	public void testGetFunction(){
+		double testMatrix[][] = {{1,2,3,4},{5,6,7,8}};
+		double expectedResult = 1.0;
+		Matrix matrix = new Matrix(testMatrix);
+		assertEquals(expectedResult, matrix.get(0,0),0);
+	}	
 
 }
 
