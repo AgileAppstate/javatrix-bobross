@@ -57,6 +57,16 @@ public class Matrix {
         return new Matrix(output);
     }
 
+    public static Matrix identity(int m, int n){
+        if (m != n)
+            return null;
+        double[][] temp = new double[m][n];
+        for (int i=0; i<m; i++){
+            temp[i][i] = 1.;
+        }
+        return new Matrix(temp);
+    }
+
     public double[][] getArray(){
         return matrix;
     }
