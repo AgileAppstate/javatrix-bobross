@@ -26,6 +26,7 @@ default:
 compile: src/Matrix.java src/MatrixTest.java $(JUNIT_JAR)
 	cd src; javac -cp .:../$(JUNIT_JAR) MatrixTest.java
 	cd src; javac Matrix.java
+	cd src; javac exampletest.java
 
 clean:
 	rm -f *~
