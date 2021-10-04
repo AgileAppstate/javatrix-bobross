@@ -37,6 +37,6 @@ test: src/Matrix.class src/MatrixTest.class $(JUNIT_JAR)
 
 run: src/Matrix.class
 	echo "Running Matrix: shouldn't crash"
-	cd src; java -cp . Matrix
+	cd src; java -cp . exampletest
 defchk: src/*.java $(CKSTYLE_XML)
 	java $(CKSTYLE_COMMAND) -c $(CKSTYLE_XML) src/*.java
