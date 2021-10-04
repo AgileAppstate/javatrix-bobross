@@ -89,5 +89,9 @@ public class Matrix {
         }
     }
 
+    public double get(int i, int j){
+	return matrix[i][j];
+}
+
 
 }
