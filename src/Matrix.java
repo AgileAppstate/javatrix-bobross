@@ -1,8 +1,12 @@
 public class Matrix {
     double[][] matrix;
+    int m;
+    int n;
 
     public Matrix(double[][] A) {
         matrix = A;
+        this.m = A.length;
+        this.n = A[0].length;
     }
 
     public Matrix(int m, int n, double s) {
@@ -18,6 +22,8 @@ public class Matrix {
                 matrix[i][j] = s;
             }
         }
+        this.n = n;
+        this.m = m;
 
     }
    
@@ -32,8 +38,24 @@ public class Matrix {
 		matrix[i][j] = 0;
 		}
 	}
+    this.n = n;
+    this.m = m;
   }    
- 
+
+  public Matrix transpose(){
+      System.out.println(m);
+
+      System.out.println(n);
+
+        double [][] temp = new double[n][m];
+
+        for (int i =0; i< m; i++){
+            for (int j = 0; j < n; j++){
+                temp[j][i] = matrix[i][j];
+            }
+        }
+        return new Matrix(temp);
+  }
 
     public Matrix times(Matrix B){
         if (B == null)

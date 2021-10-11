@@ -549,7 +549,16 @@ public class MatrixTest {
 		double expectedResult = 1.0;
 		Matrix matrix = new Matrix(testMatrix);
 		assertEquals(expectedResult, matrix.get(0,0),0);
-	}	
+	}
+
+	@Test
+	public void testTranspose(){
+		double testMatrix[][] = {{1,2,3,4},{5,6,7,8}};
+		double exectedOutput[][] = {{1,5},{2,6},{3,7},{4,8}};
+		Matrix matrix = new Matrix(testMatrix);
+		matrix = matrix.transpose();
+		assertEquals(matrix.getArray(), exectedOutput);
+	}
 
 }
 
