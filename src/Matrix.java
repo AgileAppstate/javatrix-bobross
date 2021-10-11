@@ -20,7 +20,7 @@ public class Matrix {
         }
 
     }
-   
+
     public Matrix(int m, int n){
 	/**
 	m - Number of rows
@@ -32,7 +32,19 @@ public class Matrix {
 		matrix[i][j] = 0;
 		}
 	}
-  }    
+  }
+
+    public Matrix(double[] vals, int m){
+        if (vals.length % m != 0){
+            throw new java.lang.IllegalArgumentException("Array length must be a multiple of m.");
+        }
+        matrix = new double[m][vals.length / m];
+        for (int i = 0; i < vals.length; i++){
+            matrix[i % m][i / m] = vals[i];
+        }
+
+    }
+
  
 
     public Matrix times(Matrix B){
