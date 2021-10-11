@@ -44,11 +44,11 @@ public class Matrix {
 
         double [][] output = new double[matrix.length][B.matrix[0].length];
         for (int i=0; i < output.length; i++){
-            System.out.print(i);
+            //System.out.print(i);
             for (int j=0; j < output[0].length; j++){
-                System.out.print(j);
+                //System.out.print(j);
                 for (int k=0; k < matrix[0].length; k++){
-                    System.out.print(k);
+                    //System.out.print(k);
                     output[i][j] += matrix[i][k] * B.matrix[k][j];
                 }
             }
