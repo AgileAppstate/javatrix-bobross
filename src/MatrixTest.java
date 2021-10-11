@@ -5,6 +5,8 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.*;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MatrixTest {
@@ -544,12 +546,27 @@ public class MatrixTest {
 		assertEquals(correctResults, matrix.getArray());
   }	
 	@Test 
-	public void testGetFunction(){
-		double testMatrix[][] = {{1,2,3,4},{5,6,7,8}};
+	public void testGetFunction() {
+		double testMatrix[][] = {{1, 2, 3, 4}, {5, 6, 7, 8}};
 		double expectedResult = 1.0;
 		Matrix matrix = new Matrix(testMatrix);
-		assertEquals(expectedResult, matrix.get(0,0),0);
-	}	
+		assertEquals(expectedResult, matrix.get(0, 0), 0);
+	}
 
+	@Test
+	public void test1DInitializer() {
+		Matrix matrix = new Matrix(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, 4);
+		matrix.print(5, 5);
+
+		double[][] x = new double[][]{{1,5,9,13}, {2,6,10,14}, {3,7,11,15}, {4,8,12,16}};
+		assertArrayEquals(matrix.getArray(), x);
+
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test1DIllegalArgument() {
+		Matrix matrix = new Matrix(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, 5);
+
+	}
 }
 
