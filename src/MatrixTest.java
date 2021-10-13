@@ -5,6 +5,8 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.*;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MatrixTest {
@@ -246,6 +248,17 @@ public class MatrixTest {
 		else
 			System.err.println("Result: PASSED\n");
 		assertNull(testFailed);
+	}
+
+	@Test
+	public void nocheckConstructor(){
+		try {
+			//String[] args = new String[0];
+			Matrix test = new Matrix(new double[][] {{1,2,3},{4,5,6}}, 1, 2);
+		}
+		catch (Exception e) {
+			assertNull("Should not have thrown error, unchecked constructor", e);
+		}
 	}
 
 	@Test
@@ -544,21 +557,27 @@ public class MatrixTest {
 		assertEquals(correctResults, matrix.getArray());
   }	
 	@Test 
-	public void testGetFunction(){
-		double testMatrix[][] = {{1,2,3,4},{5,6,7,8}};
+	public void testGetFunction() {
+		double testMatrix[][] = {{1, 2, 3, 4}, {5, 6, 7, 8}};
 		double expectedResult = 1.0;
 		Matrix matrix = new Matrix(testMatrix);
-		assertEquals(expectedResult, matrix.get(0,0),0);
+		assertEquals(expectedResult, matrix.get(0, 0), 0);
 	}
 
 	@Test
-	public void testTranspose(){
-		double testMatrix[][] = {{1,2,3,4},{5,6,7,8}};
-		double exectedOutput[][] = {{1,5},{2,6},{3,7},{4,8}};
-		Matrix matrix = new Matrix(testMatrix);
-		matrix = matrix.transpose();
-		assertEquals(matrix.getArray(), exectedOutput);
+	public void test1DInitializer() {
+		Matrix matrix = new Matrix(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, 4);
+		matrix.print(5, 5);
+
+		double[][] x = new double[][]{{1,5,9,13}, {2,6,10,14}, {3,7,11,15}, {4,8,12,16}};
+		assertArrayEquals(matrix.getArray(), x);
+
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void test1DIllegalArgument() {
+		Matrix matrix = new Matrix(new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, 5);
+
+	}
 }
 

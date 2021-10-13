@@ -22,11 +22,11 @@ public class Matrix {
                 matrix[i][j] = s;
             }
         }
-        this.n = n;
         this.m = m;
+        this.n = n;
 
     }
-   
+
     public Matrix(int m, int n){
 	/**
 	m - Number of rows
@@ -38,9 +38,28 @@ public class Matrix {
 		matrix[i][j] = 0;
 		}
 	}
-    this.n = n;
     this.m = m;
-  }    
+    this.n = n;
+  }
+
+    public Matrix(double[] vals, int m){
+        if (vals.length % m != 0){
+            throw new java.lang.IllegalArgumentException("Array length must be a multiple of m.");
+        }
+        matrix = new double[m][vals.length / m];
+        for (int i = 0; i < vals.length; i++){
+            matrix[i % m][i / m] = vals[i];
+        }
+        this.m = m;
+        this.n = vals.length / m;
+
+    }
+
+    public Matrix(double[][] matrix, int m, int n){
+        this.matrix = matrix;
+        this.m = m;
+        this.n = n;
+    }
 
   public Matrix transpose(){
       System.out.println(m);
