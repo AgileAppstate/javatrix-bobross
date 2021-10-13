@@ -10,6 +10,8 @@ public class explorer {
             System.out.println("generate matrix with unchecked 2d input: 2");
             System.out.println("generate matrix transpose: 3");
             System.out.println("generate matrix times: 4");
+            System.out.println("generate identity matrix: 5");
+
 
 
 
@@ -35,6 +37,9 @@ public class explorer {
 
                 case 4:
                     timesMatrix();
+
+                case 5:
+                    identityMatrix();
 
 
 
@@ -135,6 +140,8 @@ public class explorer {
         System.out.println("generate matrix with 1d input: 0");
         //System.out.println("generate matrix with 2d input: 1");
         System.out.println("generate matrix with unchecked 2d input: 2");
+        System.out.println("generate identity matrix: 5");
+
         int input = scan.nextInt();
         switch (input) {
             case 0:
@@ -144,6 +151,9 @@ public class explorer {
 
             case 2:
                 return generate2dUnchecked();
+            case 5:
+                return identityMatrix();
+
 
 
             default:
@@ -170,6 +180,19 @@ public class explorer {
         output.print(3,3);
 
         return output;
+    }
+
+    public static Matrix identityMatrix(){
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Please Enter m dimension: ");
+        int m = scan.nextInt();
+        System.out.print("Please Enter n dimension: ");
+        int n = scan.nextInt();
+
+        Matrix matrix = Matrix.identity(m, n);
+        matrix.print(3, 3);
+
+        return matrix;
     }
 
 }
