@@ -1,8 +1,12 @@
 public class Matrix {
     double[][] matrix;
+    int n;
+    int m;
 
     public Matrix(double[][] A) {
         matrix = A;
+        m = A.length;
+        n = A[0].length;
     }
 
     public Matrix(int m, int n, double s) {
@@ -18,6 +22,8 @@ public class Matrix {
                 matrix[i][j] = s;
             }
         }
+        this.m = m;
+        this.n = n;
 
     }
 
@@ -32,6 +38,8 @@ public class Matrix {
 		matrix[i][j] = 0;
 		}
 	}
+    this.m = m;
+    this.n = n;
   }
 
     public Matrix(double[] vals, int m){
@@ -42,7 +50,15 @@ public class Matrix {
         for (int i = 0; i < vals.length; i++){
             matrix[i % m][i / m] = vals[i];
         }
+        this.m = m;
+        this.n = vals.length / m;
 
+    }
+
+    public Matrix(double[][] matrix, int m, int n){
+        this.matrix = matrix;
+        this.m = m;
+        this.n = n;
     }
 
  

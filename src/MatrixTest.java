@@ -251,6 +251,17 @@ public class MatrixTest {
 	}
 
 	@Test
+	public void nocheckConstructor(){
+		try {
+			//String[] args = new String[0];
+			Matrix test = new Matrix(new double[][] {{1,2,3},{4,5,6}}, 1, 2);
+		}
+		catch (Exception e) {
+			assertNull("Should not have thrown error, unchecked constructor", e);
+		}
+	}
+
+	@Test
 	public void testTimes1() {
 		// Prep for test
 		// Actual and expected outputs
