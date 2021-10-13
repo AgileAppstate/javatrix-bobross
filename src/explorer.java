@@ -6,8 +6,12 @@ public class explorer {
         while (true) {
             System.out.println("What would you like to do?");
             System.out.println("generate matrix with 1d input: 0");
-            System.out.println("generate matrix with 2d input: 1");
+            //System.out.println("generate matrix with 2d input: 1");
             System.out.println("generate matrix with unchecked 2d input: 2");
+            System.out.println("generate matrix transpose: 3");
+            System.out.println("generate matrix times: 4");
+
+
 
 
 
@@ -17,13 +21,20 @@ public class explorer {
                 case 0:
                     generate1d();
                     break;
-                case 1:
-                    generate2d();
-                    break;
+                //case 1:
+                    //generate2d();
+                    //break;
 
                 case 2:
                     generate2dUnchecked();
                     break;
+
+                case 3:
+                    transposeMatrix();
+                    break;
+
+                case 4:
+                    timesMatrix();
 
 
 
@@ -59,14 +70,15 @@ public class explorer {
 
     public static Matrix generate2d(){
         Scanner scan = new Scanner(System.in);
-        System.out.print("Please Enter a comma and bracket seperated 2d matrix ex [1,2,3] [4,5,6]: ");
+        System.out.print("Please Enter a comma and bracket seperated 2d matrix ex (1,2,3) (4,5,6): ");
         String test = scan.nextLine();
-        String[] strarray = test.split("\\[");
+        String[] strarray = test.split("\\(");
+
         double[][] doubarray = new double[strarray.length][];
         String[] numarray;
 
-        for (int i = 0; i < strarray.length; i++){
-            strarray[i].replace("]", "");
+        for (int i = 1; i < strarray.length; i++){
+            strarray[i] = strarray[i].replace(")", "");
             numarray = strarray[i].split(",");
             doubarray[i] = new double[numarray.length];
             for (int j = 0; j < doubarray[i].length; j++){
@@ -74,7 +86,9 @@ public class explorer {
             }
         }
 
-
+        for (int i = 1; i < doubarray.length; i++){
+            System.out.println(doubarray[i]);
+        }
         Matrix matrix = new Matrix(doubarray);
         matrix.print(3, 3);
         return matrix;
@@ -119,17 +133,18 @@ public class explorer {
 
         System.out.println("What would you like your inout matrix to be?");
         System.out.println("generate matrix with 1d input: 0");
-        System.out.println("generate matrix with 2d input: 1");
+        //System.out.println("generate matrix with 2d input: 1");
         System.out.println("generate matrix with unchecked 2d input: 2");
         int input = scan.nextInt();
         switch (input) {
             case 0:
                 return generate1d();
-            case 1:
-                return generate2d();
+            //case 1:
+            //    return generate2d();
 
             case 2:
                 return generate2dUnchecked();
+
 
             default:
                 throw new RuntimeException("You didn't say the magic word!");
@@ -137,19 +152,24 @@ public class explorer {
 
     }
 
-    public static void timesMatrix(){
+    public static Matrix timesMatrix(){
         Matrix matrix1 = genearateMatrix();
         Matrix matrix2 = genearateMatrix();
 
         Matrix output = matrix1.times(matrix2);
         output.print(3,3);
+
+        return output;
     }
 
-    public static void transposeMatrix(){
+    public static Matrix transposeMatrix(){
         Matrix matrix1 = genearateMatrix();
-        Matrix matrix2 = genearateMatrix();
 
-        Matrix output = matrix1.;
+        Matrix output = matrix1.transpose();
+        System.out.println("Printing Matrix Transpose");
         output.print(3,3);
+
+        return output;
     }
+
 }
